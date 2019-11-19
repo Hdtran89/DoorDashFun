@@ -8,7 +8,11 @@ import javax.inject.Singleton
 
 @Singleton
 class RestaurantRepository(val restaurantApiService: RestaurantApiService) {
-    fun loadRestaurants() : Observable<List<Restaurant>> {
-        return restaurantApiService.getRestaurants(AppConstants.LATITUDE,AppConstants.LONGITUDE)
+    fun loadRestaurants(): Observable<List<Restaurant>> {
+        return restaurantApiService.getRestaurants(AppConstants.LATITUDE, AppConstants.LONGITUDE)
+    }
+
+    fun loadDetailRestaurant(id: String): Observable<Restaurant> {
+        return restaurantApiService.getDetailRestaurant(id)
     }
 }

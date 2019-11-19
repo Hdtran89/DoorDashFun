@@ -14,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.net.NetworkInterface
 import javax.inject.Singleton
 
 @Module
@@ -29,7 +28,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideCache(application: Application) :  Cache {
+    internal fun provideCache(application: Application): Cache {
         val cacheSize = (10 * 1024 * 1024).toLong()
         val httpCacheDirectory = File(application.cacheDir, "http-cache")
         return Cache(httpCacheDirectory, cacheSize)
@@ -37,7 +36,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideOkhttpClient(cache: Cache) : OkHttpClient {
+    internal fun provideOkhttpClient(cache: Cache): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -50,7 +49,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient) : Retrofit {
+    internal fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -61,7 +60,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideRestaurantsApiService(retrofit: Retrofit) : RestaurantApiService {
+    internal fun provideRestaurantsApiService(retrofit: Retrofit): RestaurantApiService {
         return retrofit.create(RestaurantApiService::class.java)
     }
 }

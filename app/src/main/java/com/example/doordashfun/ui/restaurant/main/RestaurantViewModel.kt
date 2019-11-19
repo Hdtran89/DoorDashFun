@@ -12,8 +12,6 @@ import javax.inject.Inject
 class RestaurantViewModel @Inject constructor(restaurantApiService: RestaurantApiService) :
     BaseViewModel() {
     private var restaurantLiveData: MutableLiveData<List<Restaurant>> = MutableLiveData()
-    private var restaurantError: MutableLiveData<String> = MutableLiveData()
-    private var restaurantLoader: MutableLiveData<Boolean> = MutableLiveData()
 
     private val restaurantRepo: RestaurantRepository = RestaurantRepository(restaurantApiService)
 

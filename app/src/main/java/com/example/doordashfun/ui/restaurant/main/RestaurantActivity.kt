@@ -1,8 +1,7 @@
 package com.example.doordashfun.ui.restaurant.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,15 +11,18 @@ import com.example.doordashfun.R
 import com.example.doordashfun.data.remote.model.Restaurant
 import com.example.doordashfun.factory.ViewModelFactory
 import com.example.doordashfun.ui.base.BaseActivity
+import com.example.doordashfun.ui.restaurant.detail.RestaurantDetailActivity
+import com.example.doordashfun.utils.AppConstants
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class RestaurantActivity : BaseActivity() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private lateinit var restaurantAdapter: RestaurantAdapter
     private lateinit var restaurantViewModel: RestaurantViewModel
     private lateinit var recyclerView: RecyclerView
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,16 @@ class RestaurantActivity : BaseActivity() {
         )
         initRecyclerView()
         loadData()
+
+        restaurantViewModel.getRestaurantLiveData().observe(this, Observer {
+            restaurantAdapter.restaurantList.addAll(it)
+        })
+
+        restaurantAdapter.getPositionClicks().subscribe {
+            val intent = Intent(this, RestaurantDetailActivity::class.java)
+            intent.putExtra(AppConstants.RESTAURANT_ID, it)
+            startActivity(intent)
+        }
     }
 
     private fun initRecyclerView() {
@@ -44,9 +56,6 @@ class RestaurantActivity : BaseActivity() {
             layoutManager = gridLayoutManager
             setHasFixedSize(true)
         }
-        restaurantViewModel.getRestaurantLiveData().observe(this, Observer {
-            restaurantAdapter.restaurantList.addAll(it)
-        })
     }
 
     private fun loadData() {
