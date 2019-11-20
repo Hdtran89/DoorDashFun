@@ -13,6 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
@@ -38,14 +39,14 @@ class RestaurantRepositoryTest {
     @Test
     fun loadRestaurants() {
 
-        `when`(restaurantApiService.getRestaurants("lat", "lng")).thenReturn(
+        `when`(restaurantApiService.getRestaurants(Mockito.anyString(), Mockito.anyString())).thenReturn(
             Observable.just(
                 MockTestUtil.mockRestaurantsApiResponse()
             )
         )
 
         val data = restaurantRepository.loadRestaurants()
-        verify(restaurantApiService).getRestaurants("lat", "lng")
+        verify(restaurantApiService).getRestaurants(Mockito.anyString(), Mockito.anyString())
 
         val observable = TestObserver<List<Restaurant>>()
         data.subscribe(observable)
@@ -54,14 +55,14 @@ class RestaurantRepositoryTest {
 
     @Test
     fun loadDetailRestaurant() {
-        `when`(restaurantApiService.getDetailRestaurant("1")).thenReturn(
+        `when`(restaurantApiService.getDetailRestaurant(Mockito.anyString())).thenReturn(
             Observable.just(
                 MockTestUtil.mockDetailRestaurantApiResponse()
             )
         )
 
-        val data = restaurantRepository.loadDetailRestaurant("1")
-        verify(restaurantApiService).getDetailRestaurant("1")
+        val data = restaurantRepository.loadDetailRestaurant(Mockito.anyString())
+        verify(restaurantApiService).getDetailRestaurant(Mockito.anyString())
 
         val observable = TestObserver<Restaurant>()
         data.subscribe(observable)

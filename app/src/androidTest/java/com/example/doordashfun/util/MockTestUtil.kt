@@ -5,8 +5,7 @@ import com.example.doordashfun.data.remote.model.Restaurant
 class MockTestUtil {
     companion object {
         fun mockDetailRestaurantApiResponse(): Restaurant {
-            val restaurant = Restaurant("1", "name1", "description1", "image_url1", "status1", 0)
-            return restaurant
+            return Restaurant("1", "name1", "description1", "image_url1", "status1", 0)
         }
 
         fun mockRestaurantsApiResponse(): List<Restaurant> {

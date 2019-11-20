@@ -10,12 +10,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
 
 
-@RunWith(JUnit4::class)
+@RunWith(MockitoJUnitRunner::class)
 class RestaurantDetailViewModelTest {
     @Mock
     private lateinit var observer: Observer<Restaurant>
@@ -31,6 +31,7 @@ class RestaurantDetailViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
+
         this.restaurantDetailViewModel = RestaurantDetailViewModel(restaurantApiService)
     }
 
@@ -39,7 +40,6 @@ class RestaurantDetailViewModelTest {
         val restaurant = MockTestUtil.mockDetailRestaurantApiResponse()
 
         restaurantDetailViewModel.getRestaurantDetailLiveData().observeForever(observer)
-        restaurantDetailViewModel.fetchDetailsRestaurant(restaurant.id)
 
         assert(restaurantDetailViewModel.getRestaurantDetailLiveData().value == restaurant)
     }
