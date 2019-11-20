@@ -1,0 +1,48 @@
+{
+  "is_time_surging": false,
+  "max_order_size": null,
+  "delivery_fee": 0,
+  "id": 662193,
+  "average_rating": 4.5,
+  "composite_score": 9,
+  "status_type": "open",
+  "is_only_catering": false,
+  "status": "26 mins",
+  "number_of_ratings": 225,
+  "asap_time": 26,
+  "description": "Fast Food, Burgers, Ice Cream, Breakfast, American (New), Dinner",
+  "business": {
+    "id": 5579,
+    "name": "McDonald's"
+  },
+  "tags": [
+    "Fast Food",
+    "Burgers",
+    "Ice Cream",
+    "Breakfast",
+    "American (New)",
+    "Dinner"
+  ],
+  "yelp_review_count": 0,
+  "business_id": 5579,
+  "extra_sos_delivery_fee": 0,
+  "yelp_rating": 0,
+  "cover_img_url": "https://cdn.doordash.com/media/restaurant/cover/McD_GoldenArches_1235_RGB_1.jpg",
+  "header_img_url": "https://cdn.doordash.com/media/store/carousel/McDonalds_201907_Storefront_17275_DoorDash_r3_cropped_1_copy.jpg",
+  "address": {
+    "city": "Mountain View",
+    "state": "CA",
+    "street": "1060 Rengstorff Avenue",
+    "lat": 37.4193659,
+    "lng": -122.0936204,
+    "printable_address": "1060 Rengstorff Ave, Mountain View, CA 94043, USA"
+  },
+  "price_range": 1,
+  "slug": "mcdonald-s-mountain-view",
+  "name": "McDonald's (16328-MT VIEW)",
+  "is_newly_added": false,
+  "url": "/store/mcdonald-s-mountain-view-662193/",
+  "service_rate": 10,
+  "promotion": null,
+  "featured_category_description": null
+}

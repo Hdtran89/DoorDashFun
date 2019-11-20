@@ -45,7 +45,7 @@ open class ApiAbstract<T> {
     private fun enqueueResponse(fileName: String, headers: Map<String, String>) {
         val inputStream = ApiAbstract::class.java.classLoader!!.getResourceAsStream(
             String.format(
-                "api-response/%s",
+                "mock/%s",
                 fileName
             )
         )

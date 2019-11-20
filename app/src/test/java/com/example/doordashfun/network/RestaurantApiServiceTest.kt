@@ -16,22 +16,23 @@ class RestaurantApiServiceTest : ApiAbstract<RestaurantApiService>() {
 
     @Test
     fun fetchRestaurants() {
-        enqueueResponse()
+        enqueueResponse("restaurant.json")
         val restaurant = service.getRestaurants("lat", "lng").blockingFirst()
 
-        Assert.assertEquals(1, restaurant.size)
-        Assert.assertEquals("id",restaurant[0].id)
+        Assert.assertEquals(2, restaurant.size)
+        Assert.assertEquals("662193",restaurant[0].id)
+        Assert.assertEquals("65207",restaurant[1].id)
     }
 
     @Test
     fun fetchDetailRestaurant() {
-        enqueueResponse()
+        enqueueResponse("detail-restaurant.json")
         val restaurant = service.getDetailRestaurant("id").blockingFirst()
 
-        Assert.assertEquals("id", restaurant.id)
-        Assert.assertEquals("name", restaurant.name)
-        Assert.assertEquals("description", restaurant.description)
-        Assert.assertEquals("delivery_fee", restaurant.delivery_fee)
+        Assert.assertEquals("662193", restaurant.id)
+        Assert.assertEquals("McDonald's (16328-MT VIEW)", restaurant.name)
+        Assert.assertEquals("Fast Food, Burgers, Ice Cream, Breakfast, American (New), Dinner", restaurant.description)
+        Assert.assertEquals(0, restaurant.delivery_fee)
     }
 
 }
